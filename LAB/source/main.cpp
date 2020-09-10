@@ -8,23 +8,24 @@
 using namespace std;
 typedef long long ll;
 
-
 int main() {
+
 	ll x = 10000;
 	ll b = 15000;
 	ll c = 20000;
 	ll d = 25000;
 	ll s1 = 4;
-	ll s2 = 6;
 
 	vector<ll> Tams;
 	Tams.push_back(x); Tams.push_back(b); Tams.push_back(c); Tams.push_back(d);
 	vector<ll> Dim;
-	Dim.push_back(s1); Dim.push_back(s2);
-	
+	Dim.push_back(s1);
+	for(short i = s1;i <= 20;i +=2)
+		Dim.push_back(i);
+
+	vector<vector<ll> > A;
 	for (short ii = 0; ii < Dim.size(); ii++) {
 		for (short jj = 0; jj < Tams.size(); jj++) {
-			vector<vector<ll> > A;
 			srand(time(NULL));
 			for (short i = 0; i < Tams[jj]; i++) {
 				vector<ll> a;
@@ -38,11 +39,11 @@ int main() {
 			auto begin = chrono::high_resolution_clock::now();
 			for (short i = 0; i < A.size(); i++) {
 				for (short j = i + 1; j < A.size(); j++) {
-					ll val = 0;
+					float val = 0;
 					for (short k = 0; k < A[i].size(); k++) {
-						val = pow(A[j][k] - A[i][k], 2);
+						val += pow(A[j][k] - A[i][k], 2);
 					}
-					ll distance = sqrt(val);
+					float distance = sqrt(val);
 				}
 			}
 			auto done = chrono::high_resolution_clock::now();
