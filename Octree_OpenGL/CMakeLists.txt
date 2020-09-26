@@ -1,4 +1,4 @@
-project("Curso de Dimensionalidad")
+project("Data Estructure - Octree with OpenGL")
 
 cmake_minimum_required(VERSION 3.15)
 
