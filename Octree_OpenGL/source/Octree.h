@@ -22,20 +22,11 @@ template<class T>
 class Octree
 {
 public:
-	Point3D<T> A; //Punto Inferior Izquierdo Frontal
-	Point3D<T> B; //Punto Superior Derecho Posterior
+	Point3D<T> A; 
+	Point3D<T> B; 
 	T ancho;
 	vector<Point3D<T> > Points;
-	
-	Octree<T>* zero;
-	Octree<T>* one;
-	Octree<T>* two;
-	Octree<T>* thre;
-	Octree<T>* four;
-	Octree<T>* five;
-	Octree<T>* six;
-	Octree<T>* seven;
-
+	Octree<T>* zero,* one,* two,* thre,* four,* five,* six,* seven;
 	Octree();
 	Octree(Point3D<T> A, Point3D<T> B, T ancho);
 	void Insertar(Point3D<T> P);
@@ -43,33 +34,17 @@ public:
 };
 
 
-//template<class T>
-//const T maxpoints = 100;
 template<class T>
 Octree<T>::Octree() {
 	A = new Point3D<T>();
 	B = new Point3D<T>();
-	zero = NULL; //Cubo Inferior Izquierdo Frontal
-	one = NULL; //Cubo Inferior Derecho Frontal
-	two = NULL; //Cubo Inferior Izquierdo Posterior
-	thre = NULL; //Cubo Inferior Derecho Posterior
-	four = NULL; //Cubo Superior Izquierdo Frontal
-	five = NULL; //Cubo Superior Derecho Frontal
-	six = NULL; //Cubo Superior Izquierdo Posterior
-	seven = NULL; //Cubo Superior Derecho Posterior
+	this->zero = this->one = this->two = this->thre = this->four = this->five = this->six = this->seven = NULL;
 	this->ancho = 0;
 }
 
 template<class T>
 Octree<T>::Octree(Point3D<T> A, Point3D<T> B, T ancho) {
-	zero = NULL;
-	one = NULL;
-	two = NULL;
-	thre = NULL;
-	four = NULL;
-	five = NULL;
-	six = NULL;
-	seven = NULL;
+	this->zero = this->one = this->two = this->thre = this->four = this->five = this->six = this->seven = NULL;
 	this->A = A;
 	this->B = B;
 	this->ancho = ancho;
@@ -83,8 +58,6 @@ bool Octree<T>::Delimitador(Point3D<T> P) {
 template<class T>
 void Octree<T>::Insertar(Point3D<T> P) {
 	if (!Delimitador(P)) { return; }
-
-	//Si el cubo tienen el numero de puntos menor al maximo dentro y no esta partido
 	if (Points.size() < maxpoints && zero == NULL && one == NULL && two == NULL && thre == NULL &&
 		four == NULL && five == NULL && six == NULL && seven == NULL) {
 		Points.push_back(P);
