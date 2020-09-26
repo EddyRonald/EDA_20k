@@ -120,7 +120,7 @@ void idle() {
 }
 
 
-Octree<double> oct1(Point3D<double>(-4, -4, 4), Point3D<double>(4, 4, -4), 8);
+Octree<double> Octree1(Point3D<double>(-4, -4, 4), Point3D<double>(4, 4, -4), 8);
 
 void glPaint(void) {
 	//El fondo de la escena al color initial
@@ -136,23 +136,18 @@ void glPaint(void) {
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 
-	PrintOctree(&oct1);
+	PrintOctree(&Octree1);
 	
 	glutSwapBuffers();
 }
 
-//
-//inicializacion de OpenGL
-//
 void init_GL(void) {
-	//Color del fondo de la escena
 	glClearColor(255, 255, 255, 0.0f);
 	glEnable(GL_DEPTH_TEST);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 }
 
-//en el caso que la ventana cambie de tamaño
 GLvoid window_redraw(GLsizei width, GLsizei height) {
 	glViewport(0, 0, width, height);
 	glMatrixMode(GL_PROJECTION);
@@ -180,7 +175,7 @@ int main(int argc,char ** argv) {
 
 	
 	for (short i = 0; i < Vertex.size(); ++i) {
-		oct1.Insertar(Point3D<double>(Vertex[i][0], Vertex[i][1], Vertex[i][2]));
+		Octree1.Insertar(Point3D<double>(Vertex[i][0], Vertex[i][1], Vertex[i][2]));
 	}
 
 	glutInit(&argc, argv);
